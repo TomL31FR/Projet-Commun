@@ -12,8 +12,6 @@ void *thread_serveur(void *arg) {
     struct sockaddr_in adresse_serveur;
     arguments_thread_serveur *args;
 
-    printf("\nSession de jeu créée\n");
-
     /* Récupération de la structure pour le déroulement de la partie */
     args = (arguments_thread_serveur*)arg;
     port = args->port;
@@ -26,7 +24,7 @@ void *thread_serveur(void *arg) {
     nommer_socket(sockfd, &adresse_serveur);
 
     /* Le thread côté serveur écoute sur la socket TCP */
-    ecouter(sockfd, 1024);
+    ecouter(sockfd, 2);
 
     printf("En attente de connexion des joueurs...\n");
 
@@ -38,6 +36,9 @@ void *thread_serveur(void *arg) {
 
     printf("largeur x hauteur : %d x %d\n", largeur, hauteur);
     printf("sockets client 1 et 2 : %d %d\n", sock_client1, sock_client2);
+
+    fermer_socket(sock_client1);
+    fermer_socket(sock_client2);
 
     return NULL;
 }
