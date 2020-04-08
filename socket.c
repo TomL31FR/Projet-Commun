@@ -80,7 +80,7 @@ int creer_socket_tcp() {
 }
 
 void ecouter(int sockfd, int n_connexions) {
-    if(listen(sockfd, 1) == -1) {
+    if(listen(sockfd, n_connexions) == -1) {
         perror("Erreur lors de la mise en mode passif ");
         exit(EXIT_FAILURE);
     }
